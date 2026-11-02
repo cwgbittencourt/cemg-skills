@@ -13,6 +13,71 @@ Repositório publicado como **privado** em [cwgbittencourt/cemg-skills](https://
 
 Cada pasta em `skills/` é uma unidade de instalação independente. Não é necessário instalar o catálogo inteiro.
 
+## Qual skill faz sentido para você?
+
+Desenvolver com IA pode acelerar a escrita do código. Entender a demanda antes de implementar e compreender o resultado antes de aprová-lo continuam exigindo atenção. Este catálogo reúne skills para ajudar nessas duas etapas, com documentos que você pode consultar e revisar no próprio projeto.
+
+| Sua necessidade | Skill indicada | Veja uma entrega antes de instalar |
+|---|---|---|
+| “Tenho uma ideia, mas preciso esclarecer as regras e o que significa estar pronto.” | `cemg-spec` | [Exemplo de especificação de cadastro de tarefas](docs/exemplos/cemg-spec.md) |
+| “A task foi implementada, mas preciso entender o código, suas decisões e o que revisar.” | `cemg-task-review` | [Exemplo de revisão com fluxo e explicação dos métodos](docs/exemplos/cemg-task-review.md) |
+
+Você pode usar cada skill separadamente. A `cemg-task-review` precisa da estrutura de especificações e tasks descrita abaixo; a `cemg-spec` pode trabalhar sobre uma demanda inicial. A `cemg-spec` não cria automaticamente toda essa estrutura de projeto.
+
+### cemg-spec: esclarecer a demanda antes de construir
+
+Uma solicitação como “quero cadastrar tarefas” deixa perguntas abertas: título vazio é permitido? Os dados precisam sobreviver ao encerramento do programa? Como saber que a entrega atende ao pedido? Se essas decisões ficarem implícitas, a implementação pode funcionar tecnicamente e ainda entregar um comportamento diferente do esperado.
+
+A `cemg-spec` ajuda a transformar a demanda em uma especificação verificável: investiga o contexto, explicita regras, relaciona requisitos a critérios de aceite e propõe etapas de implementação. Decisões essenciais sem resposta aparecem como bloqueios; detalhes de baixo risco podem aparecer como suposições explícitas.
+
+**Quando instalar:** ao preparar uma funcionalidade, descrever a correção de um defeito, planejar uma refatoração ou revisar uma especificação com critérios vagos. Tenha a demanda e o contexto disponíveis; acesso ao repositório permite fundamentar melhor as propostas.
+
+**Exemplo de pedido no chat:**
+
+```text
+$cemg-spec criar uma função Python para cadastrar tarefas em uma lista em memória.
+O título deve ser texto e não pode ficar vazio após remover espaços das extremidades.
+Cada tarefa nova começa com concluida=false. Não quero banco nem interface nesta etapa.
+Salve a especificação em docs/especificacao-cadastro-tarefas.md.
+```
+
+**O que você recebe:** um documento com objetivo, escopo, regras, erros, aceite e plano. Por exemplo, o aceite pode exigir que um título contendo apenas espaços seja recusado sem modificar a lista. Veja o [documento demonstrativo completo](docs/exemplos/cemg-spec.md), incluindo sugestões de pedidos para revisar, atualizar e validar a spec.
+
+A skill organiza a especificação; a classificação de prontidão não comprova que houve implementação ou execução de testes.
+
+### cemg-task-review: compreender a entrega antes de aprovar
+
+A `cemg-task-review` nasceu de uma dificuldade prática: quem implementa uma task precisa entender o que foi realizado e como funciona, mesmo quando boa parte do código foi gerada pela IA. Quem revisa ou mantém esse código também precisa desse entendimento. Se for necessário reconstruir sozinho toda a lógica, parte do tempo ganho na implementação acaba consumida na revisão humana.
+
+O objetivo é diminuir esse esforço ao organizar três respostas: **o que foi criado, como funciona e por que existe**. O roteiro relaciona o pedido à entrega, mostra as chamadas entre componentes e explica os métodos relevantes. Os motivos documentados são separados das inferências técnicas da IA.
+
+**Quando instalar:** ao terminar uma task cujo código ficou difícil de acompanhar, preparar uma passagem de conhecimento ou revisar uma mudança com vários caminhos de execução. Para gerar o roteiro, tenha a task identificada em `specs/<spec>/tasks.md`, os requisitos e o código disponíveis no projeto.
+
+**Exemplo de pedido no chat**, em um projeto demonstrativo com a spec `001-cadastro-tarefas` e a task `T001`:
+
+```text
+$cemg-task-review [001] T001
+```
+
+**O que você recebe:** um arquivo como `docs/validacao_humana/001-cadastro-tarefas/T001.md`, com matriz solicitado versus entregue, diagrama, explicação dos métodos e checklist para revisão humana.
+
+No exemplo, a função de cadastro chama uma validação antes de modificar a lista. O fluxo torna visíveis tanto o sucesso quanto o caminho de erro:
+
+```mermaid
+flowchart TD
+    A[Pedido de cadastro] --> B[adicionar_tarefa]
+    B --> C[validar_titulo]
+    C --> D{Texto com conteúdo?}
+    D -->|Não| E[ValueError; lista preservada]
+    D -->|Sim| F[Remover espaços das extremidades]
+    F --> G[Criar tarefa com concluida=false]
+    G --> H[Adicionar à lista e retornar tarefa]
+```
+
+Esse é o fluxo do [código demonstrativo](docs/exemplos/cadastro_tarefas.py). Abra o [exemplo completo de revisão](docs/exemplos/cemg-task-review.md) para ver a explicação do motivo da validação, as evidências e os pontos que ainda exigem julgamento humano. Em uma revisão real, o diagrama deve refletir o código encontrado.
+
+A skill apoia a compreensão; a decisão de aprovação continua humana. Ela inicia o roteiro como `PENDENTE DE REVISÃO HUMANA`, sem escrever observações em nome do revisor. Os exemplos deste catálogo são materiais didáticos, não registros de homologação de um produto.
+
 ## Requisitos
 
 - Codex com suporte a skills pessoais.
@@ -227,7 +292,8 @@ Se a nova instalação falhar, restaure a pasta do backup para o caminho origina
 2. Use nome em minúsculas, números e hífens, igual ao da pasta, com menos de 64 caracteres.
 3. Inclua recursos com links relativos internos à própria skill. Não dependa de caminhos da máquina de origem.
 4. Adicione a skill e a versão à tabela do catálogo e documente cada comando nesta página.
-5. Execute a validação e os testes antes de publicar.
+5. Explique o problema que a skill resolve, quando instalá-la, seus pré-requisitos e limites. Inclua um pedido simples e um exemplo de entrega em `docs/exemplos/`, identificado como demonstrativo. Mostre um fluxo visual quando ele ajudar a entender o resultado.
+6. Execute a validação e os testes antes de publicar.
 
 ```text
 python -m pip install -r requirements-dev.txt
