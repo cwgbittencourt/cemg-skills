@@ -2,7 +2,7 @@
 
 Catálogo pessoal de skills para o Codex. Instale somente as skills que quiser, em Windows, macOS ou Linux, sem copiar configurações de uma máquina para outra.
 
-**Estado inicial:** estrutura preparada localmente para `cwgbittencourt/cemg-skills`. Os comandos de download abaixo dependem da publicação desse repositório no GitHub. Consulte [validação e pendências](docs/VALIDACAO.md).
+Repositório publicado como **privado** em [cwgbittencourt/cemg-skills](https://github.com/cwgbittencourt/cemg-skills). A instalação exige acesso autenticado à conta. Consulte [validação e pendências](docs/VALIDACAO.md).
 
 ## Catálogo
 
@@ -24,7 +24,7 @@ O destino é `$CODEX_HOME/skills` quando `CODEX_HOME` está definido; caso contr
 
 ## Instalar uma skill pelo chat do Codex
 
-Depois da publicação, envie no chat:
+Envie no chat:
 
 ```text
 $skill-installer instale a skill cemg-task-review do repositório cwgbittencourt/cemg-skills, caminho skills/cemg-task-review, branch main.
@@ -63,13 +63,13 @@ python3 "$installer" --repo cwgbittencourt/cemg-skills --path skills/cemg-task-r
 | `--method auto` | Tenta download e, em situações de autenticação compatíveis, recorre ao Git. |
 | `--method git` | Usa Git; útil quando o acesso ao repositório privado já está configurado no Git. |
 
-Para fixar uma versão, acrescente `--ref cemg-task-review-v1.2.0` **somente depois que essa tag for publicada**. Hoje a versão `1.2.0` está declarada na skill; isso não significa que uma tag já exista no GitHub.
+Para fixar a versão publicada, acrescente `--ref cemg-task-review-v1.2.0`. A [release 1.2.0](https://github.com/cwgbittencourt/cemg-skills/releases/tag/cemg-task-review-v1.2.0) também oferece o ZIP original. A instalação real por `main` e pela tag foi verificada no Windows com `--method git`.
 
 O instalador recusa um destino já existente. Para atualizar, siga a seção de atualização. A skill deve ficar disponível no próximo turno; se não aparecer, reinicie o Codex e confira o diretório de instalação.
 
 ## Instalação manual a partir de um clone
 
-Depois da publicação:
+Para obter uma cópia local:
 
 ```text
 git clone https://github.com/cwgbittencourt/cemg-skills.git
