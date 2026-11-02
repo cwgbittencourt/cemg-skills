@@ -23,6 +23,8 @@ Executadas no Windows, com Python 3.11.5:
 | Exclusão de arquivos locais | `.vs/` ignorada pelo Git. |
 | Instalação real por GitHub, método Git | Aprovada em `main` e `cemg-task-review-v1.2.0`, em diretórios temporários; os quatro arquivos são idênticos à fonte local. |
 | Publicação | Repositório privado, tag e release publicados na conta `cwgbittencourt`. |
+| Comando padrão do README (`--method auto`) | Instalação real aprovada em diretório temporário, sem alterar skills pessoais. |
+| GitHub Actions, commit `7223cda` | Validador e oito testes aprovados em Windows, macOS e Linux. Execução: [41485961845](https://github.com/cwgbittencourt/cemg-skills/actions/runs/41485961845). |
 
 No ensaio do instalador oficial, somente a obtenção do repositório (`_prepare_repo`) foi substituída pela pasta local. A resolução dos argumentos, a validação da pasta, a cópia e a recusa de sobrescrita usaram o código real do instalador. Esse ensaio não comprova acesso à rede, autenticação, download ou checkout de tags.
 
@@ -33,7 +35,8 @@ A autenticação do GitHub CLI foi confirmada fora do sandbox na conta `cwgbitte
 ## Pendências externas
 
 - Escolher licença antes de uma eventual distribuição pública; a preparação para publicação usa repositório privado.
-- Concluir a execução do workflow nas três plataformas. A primeira execução detectou a ausência de `cache-dependency-path` para `requirements-dev.txt`; a configuração foi corrigida.
-- Testar geração/listagem em um projeto de exemplo e o método de download HTTP do instalador. A instalação real via Git já foi validada.
+- Testar geração/listagem em um projeto de exemplo. Esse ensaio de comportamento do agente não foi executado na preparação do catálogo.
+
+A primeira execução do workflow detectou a ausência de `cache-dependency-path` para `requirements-dev.txt`; a configuração foi corrigida e todas as etapas de validação e testes passaram na execução posterior.
 
 Os comandos de instalação por GitHub e a cópia da pasta local estão disponíveis. Por ser privado, o repositório exige autenticação; o método Git foi testado com as credenciais existentes.
