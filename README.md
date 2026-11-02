@@ -8,6 +8,7 @@ Catálogo pessoal de skills para o Codex. Instale somente as skills que quiser, 
 
 | Skill | Versão | Finalidade |
 |---|---|---|
+| [cemg-spec](skills/cemg-spec/SKILL.md) | 1.0.0 | Criar, revisar, atualizar e validar especificações de software usando o template CEMG. |
 | [cemg-task-review](skills/cemg-task-review/SKILL.md) | 1.2.0 | Gerar roteiros de revisão de tasks e listar decisões humanas com rastreabilidade no Git. |
 
 Cada pasta em `skills/` é uma unidade de instalação independente. Não é necessário instalar o catálogo inteiro.
@@ -102,6 +103,27 @@ fi
 ```
 
 Copie a pasta completa, incluindo `agents/`, `assets/` e `references/`. Não copie `packages/`, `.git/` nem o README para dentro da skill.
+
+## Comandos da cemg-spec
+
+Envie os comandos no **chat do Codex**, no projeto que será especificado:
+
+| Comando | Finalidade |
+|---|---|
+| `$cemg-spec criar <demanda>` | Investigar a demanda e produzir uma especificação. |
+| `$cemg-spec revisar <arquivo ou conteúdo>` | Apontar lacunas, contradições e correções propostas. |
+| `$cemg-spec atualizar <spec> <mudanças>` | Incorporar mudanças preservando IDs e registrando impactos. |
+| `$cemg-spec validar <spec>` | Avaliar a prontidão para implementação; aceita também “verificar prontidão”. |
+
+A skill utiliza o modelo canônico incluído em sua pasta e classifica a spec como pronta, pronta com suposições explícitas ou bloqueada por decisões essenciais. Sua função é investigar e documentar; prontidão não significa implementação concluída.
+
+Para instalar pelo chat após a publicação:
+
+```text
+$skill-installer instale a skill cemg-spec do repositório cwgbittencourt/cemg-skills, caminho skills/cemg-spec, branch main.
+```
+
+Nos exemplos de instalação pelo terminal, cópia manual e atualização deste README, substitua `cemg-task-review` por `cemg-spec` para selecionar esta skill.
 
 ## Comandos da cemg-task-review
 

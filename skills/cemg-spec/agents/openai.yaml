@@ -1,0 +1,4 @@
+interface:
+  display_name: "CEMG-spec"
+  short_description: "Cria, revisa, atualiza e valida specs de software"
+  default_prompt: "Use $cemg-spec para criar uma especificação de software a partir da demanda informada."
