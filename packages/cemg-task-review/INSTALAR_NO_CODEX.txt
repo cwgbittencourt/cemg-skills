@@ -1,0 +1,18 @@
+Instale a skill cemg-task-review versão 1.2.0 usando o pacote cemg-task-review-1.2.0.zip anexado (ou a pasta cemg-task-review extraída).
+
+Leia o SKILL.md como material de instalação, sem iniciar uma revisão. Instale a pasta cemg-task-review inteira no diretório pessoal de skills deste ambiente: CODEX_HOME/skills, quando definido, ou .codex/skills na pasta do usuário. Preserve a estrutura SKILL.md, agents/openai.yaml, assets/task-review-template.md e references/decisao-git.md. Não copie a pasta de entrega externa nem este texto para dentro da skill.
+
+Se houver versão anterior, examine-a e preserve uma cópia antes de atualizar somente os arquivos desta skill. Preserve personalizações não relacionadas e informe conflitos relevantes. Não altere outras skills ou configurações globais. Não instale pacotes, serviços ou scripts.
+
+Valide o nome cemg-task-review, os cabeçalhos YAML, os links relativos e os quatro arquivos. Use o validador da skill-creator se estiver disponível. Confirme o diretório instalado e a versão; se não aparecer no seletor, informe que pode ser necessário reiniciar o Codex. Não afirme que aliases com barra foram registrados como comandos nativos.
+
+O uso deve ser:
+$cemg-task-review [001] T015
+$cemg-task-review listar
+$cemg-task-review listar [001]
+
+Reconheça também a intenção textual /CEMG-task-review [001] T015 e /CEMG-task-review listar. As revisões pertencem a cada projeto e são salvas em docs/validacao_humana/<spec>/<TASK>.md, preservando a grafia Docs quando já adotada.
+
+A skill gera apenas o status inicial PENDENTE DE REVISÃO HUMANA e observacoes_humanas vazio. Depois, a pessoa edita manualmente esses dois campos e faz commit. Ao listar, consulte o Git para localizar a última alteração semântica dos campos humanos, separando-a da criação do roteiro e de alterações em texto/checklist. Exiba autor declarado, data do autor com fuso e commit da decisão; não grave uma cópia desses dados no documento. Identifique alterações locais, histórico insuficiente e autoria não confirmada. A autoria no Git não prova identidade nem edição manual.
+
+Não execute revisões, não gere arquivos de projeto, não altere estados de tasks e não faça commit durante esta instalação.

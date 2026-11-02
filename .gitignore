@@ -1,0 +1,13 @@
+.vs/
+.vscode/
+.idea/
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+dist/
+.test-output/

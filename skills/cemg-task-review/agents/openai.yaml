@@ -1,0 +1,4 @@
+interface:
+  display_name: "CEMG-task-review"
+  short_description: "Revisões por task e decisões humanas rastreadas no Git"
+  default_prompt: "Use $cemg-task-review [001] T002 para gerar e salvar a revisão guiada, ou peça listar para consultar decisões e registros no Git."
