@@ -1,6 +1,6 @@
 # Publicação e manutenção
 
-Destino identificado: `cwgbittencourt/cemg-skills`. A conta foi confirmada pelo conector GitHub; o repositório não foi encontrado durante a preparação inicial.
+Destino publicado: `cwgbittencourt/cemg-skills`, privado. A tag e a release `cemg-task-review-v1.2.0` foram publicadas em 2026-11-02. Os procedimentos abaixo documentam como reproduzir a preparação em outro repositório e manter futuras versões; não execute novamente os comandos de criação para este repositório.
 
 ## Primeira publicação
 

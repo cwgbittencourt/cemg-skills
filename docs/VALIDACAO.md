@@ -21,6 +21,8 @@ Executadas no Windows, com Python 3.11.5:
 | Instalador oficial do Codex com fonte local | Instalação em diretório temporário aprovada; quatro arquivos idênticos, somente a skill escolhida instalada. |
 | Instalação repetida no mesmo destino | Recusada pelo instalador; arquivos da primeira instalação preservados. |
 | Exclusão de arquivos locais | `.vs/` ignorada pelo Git. |
+| Instalação real por GitHub, método Git | Aprovada em `main` e `cemg-task-review-v1.2.0`, em diretórios temporários; os quatro arquivos são idênticos à fonte local. |
+| Publicação | Repositório privado, tag e release publicados na conta `cwgbittencourt`. |
 
 No ensaio do instalador oficial, somente a obtenção do repositório (`_prepare_repo`) foi substituída pela pasta local. A resolução dos argumentos, a validação da pasta, a cópia e a recusa de sobrescrita usaram o código real do instalador. Esse ensaio não comprova acesso à rede, autenticação, download ou checkout de tags.
 
@@ -31,8 +33,7 @@ A autenticação do GitHub CLI foi confirmada fora do sandbox na conta `cwgbitte
 ## Pendências externas
 
 - Escolher licença antes de uma eventual distribuição pública; a preparação para publicação usa repositório privado.
-- Criar e publicar `cwgbittencourt/cemg-skills`; a consulta inicial ao conector retornou repositório não encontrado.
-- Executar o workflow nas três plataformas depois da publicação.
-- Testar download real do GitHub, instalação por tag e geração/listagem em um projeto de exemplo.
+- Concluir a execução do workflow nas três plataformas. A primeira execução detectou a ausência de `cache-dependency-path` para `requirements-dev.txt`; a configuração foi corrigida.
+- Testar geração/listagem em um projeto de exemplo e o método de download HTTP do instalador. A instalação real via Git já foi validada.
 
-Comandos de instalação por GitHub no README ficam utilizáveis depois da publicação. A instalação por cópia da pasta local já pode ser usada.
+Os comandos de instalação por GitHub e a cópia da pasta local estão disponíveis. Por ser privado, o repositório exige autenticação; o método Git foi testado com as credenciais existentes.
