@@ -1,24 +1,26 @@
 ---
 name: cemg-task-review
-description: "Gera e salva revisões guiadas de tasks e lista decisões humanas com rastreabilidade no Git. Usar para CEMG-task-review [001] T002, /CEMG-task-review listar ou revisão guiada por especificação e task."
+description: "Gera e salva revisões guiadas de tasks e lista decisões humanas com rastreabilidade no Git. Usar para /cemg-task-review, /CEMG-task-review, $cemg-task-review, revisão guiada por especificação e task, auditar o que a IA criou em uma task ou listar revisões existentes."
 metadata:
-  version: "1.2.0"
+  version: "1.2.1"
 ---
 
 # CEMG — Revisão guiada de task
 
-Produzir um roteiro navegável para compreender o que foi criado, como funciona e por que
+Produzir um roteiro navegável para compreender o que foi criado pela IA, como funciona e por que
 existe. Seguir o modelo [assets/task-review-template.md](assets/task-review-template.md).
 A revisão apoia o julgamento humano; não aprova autonomamente a implementação.
 
 ## Modos de uso e destino
 
-- **Gerar e salvar:** `$cemg-task-review [001] T002` ou `/CEMG-task-review [001] T002`.
-- **Listar:** `$cemg-task-review listar` ou `/CEMG-task-review listar`.
-- **Listar uma spec:** `$cemg-task-review listar [001]` ou `/CEMG-task-review listar [001]`.
+- **Gerar e salvar:** `/cemg-task-review [001] T002` (ou `$cemg-task-review [001] T002`).
+- **Listar:** `/cemg-task-review listar` (ou `$cemg-task-review listar`).
+- **Listar uma spec:** `/cemg-task-review listar [001]` (ou `$cemg-task-review listar [001]`).
 
 Identificar o modo antes de exigir spec/task. `listar` não é nome de pasta ou task e não
-inicia uma revisão. As formas com barra continuam aliases textuais, sem registro nativo.
+inicia uma revisão. Reconhecer as formas com barra (`/cemg-task-review`), com prefixo
+(`$cemg-task-review`) e intenção expressa em linguagem natural. O registro nativo do comando
+e a expansão de `$ARGUMENTS` dependem do assistente; estas instruções não os configuram.
 O destino pertence ao projeto atual, não à instalação pessoal da skill.
 
 ### Gerar e salvar
@@ -79,16 +81,25 @@ pasta, revisão, índice nem executa testes, correções ou nova avaliação.
 
 ## Parâmetros da geração
 
-Acionamento explícito da skill no Codex:
+Acionamento explícito da skill:
 
-```text
-$cemg-task-review [001] T002
-```
+- **Claude Code (comando da skill):**
+  ```text
+  /cemg-task-review [001] T002
+  ```
+- **Codex:**
+  ```text
+  $cemg-task-review [001] T002
+  ```
+- **Antigravity, Kiro e demais assistentes com descoberta de skills:** usar a intenção
+  em linguagem natural abaixo; a disponibilidade de um comando com barra depende do cliente.
+- **Linguagem natural:**
+  "Revisar task T002 da spec 001", "Gerar revisão guiada da task T002", "Listar revisões", etc.
 
 Reconhecer também a intenção expressa por `/CEMG-task-review [001] T002`, por
-`/CEMG-task-review 001 T002` ou pelo nome completo da pasta. O alias com barra é uma
-convenção textual, não o registro de um comando nativo ou garantia de menu/autocompletar.
-Tratar o texto após o nome como argumentos; não executar um comando de terminal.
+`/CEMG-task-review 001 T002`, `$cemg-task-review 001 T002` ou pelo nome completo da pasta.
+Tratar o texto após o comando ou argumentos posicionais ($ARGUMENTS) como parâmetros de entrada;
+não executar como um comando de terminal.
 
 - Primeiro argumento: prefixo da especificação, preservando zeros e removendo apenas os
   colchetes opcionais, ou nome completo da pasta, como `001-entrega-validada`.
@@ -167,5 +178,5 @@ a tabela de documentos e os avisos necessários, sem iniciar o roteiro de revis�
 - Não preencher nem persistir responsável, data ou commit da decisão dentro do roteiro;
   esses dados são derivados do Git durante a consulta. Não tratar autoria declarada como
   prova de identidade ou prova de que a edição foi humana. Não exigir script adicional.
-- Não modificar os documentos de origem da skill. O modelo necessário já está incorporado;
-  a instalação não depende de acesso à unidade E:.
+- Não modificar os documentos de origem da skill. O modelo necessário já está incorporado
+  nos assets e referências da própria skill.

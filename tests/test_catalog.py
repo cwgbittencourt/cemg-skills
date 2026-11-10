@@ -56,7 +56,7 @@ class CatalogTests(unittest.TestCase):
     def test_outdated_catalog_version_fails(self):
         readme = self.root / "README.md"
         readme.write_text(readme.read_text(encoding="utf-8").replace(
-            "| 1.2.0 |", "| 0.0.1 |"), encoding="utf-8")
+            "| 1.2.1 |", "| 0.0.1 |"), encoding="utf-8")
         self.assertTrue(any("version is missing or outdated" in e for e in validate(self.root)))
 
 

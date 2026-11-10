@@ -1,5 +1,24 @@
 # Validação da preparação inicial
 
+## Integração da adaptação para outros assistentes — 2026-11-10
+
+As quatro instalações locais informadas na imagem (Codex, Claude Code, Antigravity e Kiro) foram lidas e comparadas por SHA-256: seus quatro arquivos eram idênticos. Em relação ao catálogo, somente `SKILL.md` e os metadados de interface apresentavam diferenças. O template e a referência de decisões foram preservados integralmente.
+
+A adaptação foi incorporada em `skills/cemg-task-review/`, com versão `1.2.1`. As instruções foram ajustadas para distinguir a interpretação dos pedidos do registro nativo de comandos: barra no Claude Code, prefixo no Codex e linguagem natural como alternativa no Antigravity e no Kiro. Não há garantia de expansão de `$ARGUMENTS` fora dos clientes que a implementam. O pacote histórico `1.2.0` permanece intacto.
+
+Os destinos foram conferidos nas documentações oficiais, vinculadas no [guia de instalação por assistente](INSTALACAO-ASSISTENTES.md). Não houve alteração das instalações pessoais nem execução funcional dentro dos assistentes.
+
+Verificações executadas no Windows com Python 3.12.11 e PyYAML 6.0.3 em `.test-output/deps` (diretório ignorado pelo Git):
+
+| Verificação | Resultado |
+|---|---|
+| `scripts/validate_skills.py` | Aprovado para o catálogo completo, recursos, YAML e links. |
+| `python -m unittest discover -s tests -v` | Oito testes aprovados. |
+| `quick_validate.py skills/cemg-task-review` | `Skill is valid!`. |
+| `git diff --check` | Aprovado. |
+
+A integração é local; commit, publicação da versão e execução funcional por assistente não fazem parte destes resultados. O registro abaixo descreve a preparação e publicação anteriores.
+
 Data: 2026-11-02, fuso do usuário America/Sao_Paulo.
 
 ## Escopo

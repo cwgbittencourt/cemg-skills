@@ -1,6 +1,6 @@
 # CEMG Skills
 
-Catálogo pessoal de skills para o Codex. Instale somente as skills que quiser, em Windows, macOS ou Linux, sem copiar configurações de uma máquina para outra.
+Catálogo pessoal de skills para assistentes compatíveis com Agent Skills. Instale somente as skills que quiser, em Windows, macOS ou Linux, sem copiar configurações de uma máquina para outra.
 
 Repositório publicado como **privado** em [cwgbittencourt/cemg-skills](https://github.com/cwgbittencourt/cemg-skills). A instalação exige acesso autenticado à conta. Consulte [validação e pendências](docs/VALIDACAO.md).
 
@@ -9,9 +9,11 @@ Repositório publicado como **privado** em [cwgbittencourt/cemg-skills](https://
 | Skill | Versão | Finalidade |
 |---|---|---|
 | [cemg-spec](skills/cemg-spec/SKILL.md) | 1.0.0 | Criar, revisar, atualizar e validar especificações de software usando o template CEMG. |
-| [cemg-task-review](skills/cemg-task-review/SKILL.md) | 1.2.0 | Gerar roteiros de revisão de tasks e listar decisões humanas com rastreabilidade no Git. |
+| [cemg-task-review](skills/cemg-task-review/SKILL.md) | 1.2.1 | Gerar roteiros de revisão de tasks e listar decisões humanas com rastreabilidade no Git. |
 
 Cada pasta em `skills/` é uma unidade de instalação independente. Não é necessário instalar o catálogo inteiro.
+
+A `cemg-task-review` possui uma única fonte compartilhada para Codex, Claude Code, Antigravity e Kiro. Consulte o [guia de instalação por assistente](docs/INSTALACAO-ASSISTENTES.md), com destinos, cópia segura e exemplos de uso.
 
 ## Requisitos
 
@@ -63,7 +65,7 @@ python3 "$installer" --repo cwgbittencourt/cemg-skills --path skills/cemg-task-r
 | `--method auto` | Tenta download e, em situações de autenticação compatíveis, recorre ao Git. |
 | `--method git` | Usa Git; útil quando o acesso ao repositório privado já está configurado no Git. |
 
-Para fixar a versão publicada, acrescente `--ref cemg-task-review-v1.2.0`. A [release 1.2.0](https://github.com/cwgbittencourt/cemg-skills/releases/tag/cemg-task-review-v1.2.0) também oferece o ZIP original. A instalação real por `main` e pela tag foi verificada no Windows com `--method git`.
+Para fixar a versão histórica publicada, acrescente `--ref cemg-task-review-v1.2.0`. A [release 1.2.0](https://github.com/cwgbittencourt/cemg-skills/releases/tag/cemg-task-review-v1.2.0) também oferece o ZIP original. A instalação real anterior por `main` e pela tag foi verificada no Windows com `--method git`. A adaptação `1.2.1` está na fonte local; a tag `cemg-task-review-v1.2.0` continua entregando a versão original.
 
 O instalador recusa um destino já existente. Para atualizar, siga a seção de atualização. A skill deve ficar disponível no próximo turno; se não aparecer, reinicie o Codex e confira o diretório de instalação.
 
@@ -167,7 +169,7 @@ Filtra pelo prefixo ou nome da especificação. Não exige que a pasta original 
 /CEMG-task-review listar [001]
 ```
 
-Essas formas expressam a mesma intenção no chat. Não registram comandos nativos, atalhos de terminal ou itens de menu.
+Essas formas expressam a mesma intenção no chat do Codex. No Claude Code, use `/cemg-task-review [001] T015`. No Antigravity e no Kiro, peça “Use a skill cemg-task-review para revisar a task T015 da spec 001”. O registro de comandos e o menu dependem do assistente; consulte o guia de instalação por assistente.
 
 ### Pré-requisitos e limites da revisão
 
